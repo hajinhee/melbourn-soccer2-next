@@ -1,5 +1,4 @@
 export * from "./Layout"
 export * from "./Header"
 export * from "./Footer"
-export * from "./Nav"
-export * from "./Home"
+export {default as Nav} from './Nav.js'

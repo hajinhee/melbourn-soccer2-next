@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-
+import { userActions } from '../../redux/reducers/userReducer.ts'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -50,21 +50,22 @@ export default function Join(){
           <Box component="form" noValidate onSubmit={
             e => {
                 e.preventDefault()
+                alert('1. 회원가입 입력'+JSON.stringify(user))
                 dispatch(userActions.joinRequest(user))
-                setUser({
-                    userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
-                })
+                /*setUser({
+                  userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
+                })*/
             }
         } sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6} >
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="userid"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="userid"
+                  label="user id"
                   autoFocus
                   onChange={handleChange}
                 />
@@ -73,10 +74,10 @@ export default function Join(){
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  id="password"
+                  label="password"
+                  name="password"
+                  autoComplete="new-password"
                   onChange={handleChange}
                 />
               </Grid>
@@ -85,7 +86,7 @@ export default function Join(){
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="email address"
                   name="email"
                   autoComplete="email"
                   onChange={handleChange}
@@ -95,11 +96,47 @@ export default function Join(){
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  name="name"
+                  label="name"
+                  type="name"
+                  id="name"
+                  autoComplete="name"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="phone"
+                  label="phone"
+                  type="phone"
+                  id="phone"
+                  autoComplete="phone"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="birth"
+                  label="birth"
+                  type="birth"
+                  id="birth"
+                  autoComplete="birth"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="address"
+                  label="address"
+                  type="address"
+                  id="address"
+                  autoComplete="address"
                   onChange={handleChange}
                 />
               </Grid>

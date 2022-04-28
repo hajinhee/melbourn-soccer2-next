@@ -24,21 +24,27 @@ export const joinApi = async (payload : {
     address: string
 }) => {
     try {
-        const response: AxiosResponse<unknown, UserType[]> = await axios.post(
+        alert (JSON.stringify(payload))
+        const response: AxiosResponse<unknown, UserType[]> = 
+        await axios.post(
             `${SERVER}/user/join`,
             payload,
             {headers}
         )
         return response.data
     } catch (err) {
+
         return err;
+    
     }
+    
 }
 export const loginApi = async (payload : {
     userid: string,
     password: string
 }) => {
     try {
+        
         const response: AxiosResponse<unknown, UserType[]> = await axios.post(
             `${SERVER}/user/login`,
             payload,

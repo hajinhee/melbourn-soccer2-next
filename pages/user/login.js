@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../redux/reducers/userReducer.ts';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +14,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 
 function Copyright(props) {
   return (
@@ -28,21 +32,21 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
+export default function Login(){
+    const [login, setLogin] = useState({
+        userid:'', password:''
+    })
+    const dispatch = useDispatch()
+    const handleChange = e =>{
+        e.preventDefault()
+        const{name, value} = e.target;
+        setLogin({...login,[name]: value})
+    }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
+        <Box 
           sx={{
             marginTop: 8,
             display: 'flex',
@@ -56,15 +60,25 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          
+          <Box component="form"  noValidate sx={{ mt: 1 }} onSubmit={
+            e => {
+                e.preventDefault()
+                dispatch(userActions.loginRequest(login))
+                setLogin({
+                    userid:'', password:''
+                })
+            }
+        }>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="userid"
               label="사용자ID"
-              name="email"
+              name="userid"
               autoComplete="email"
+              onChange={handleChange}
               autoFocus
             />
             <TextField
@@ -75,6 +89,7 @@ export default function SignIn() {
               label="비밀번호"
               type="password"
               id="password"
+              onChange={handleChange}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -102,6 +117,7 @@ export default function SignIn() {
               </Grid>
             </Grid>
           </Box>
+
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>

@@ -1,5 +1,5 @@
-import {Header, Layout, Nav} from "../components";
-import { wrapper } from '../store/store'
+import {Header, Layout, Nav} from "@/components";
+import { wrapper } from '@/redux/store.ts'
 
 const App = ({ Component, pageProps}) => {
   return (<>
@@ -13,4 +13,3 @@ const App = ({ Component, pageProps}) => {
   }
   
   export default wrapper.withRedux(App)
-  

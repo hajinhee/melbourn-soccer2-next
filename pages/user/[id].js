@@ -4,7 +4,6 @@ import axios from 'axios'
 
 Profile.getInitialProps = async ({ query }) => {
   const {id} = query
-
   return {id}
 }
 export default function Profile({id}){
